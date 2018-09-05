@@ -16,33 +16,28 @@ app.on('ready', () => {
   const menu = Menu.buildFromTemplate(createMenuBar(mainWindow, ResetDir, OpenDir));
   Menu.setApplicationMenu(menu);
   const initialStartFlagFilePath = path.join(__dirname, 'electronUserData', 'initialStartup.txt');
-  if (!fs.existsSync(initialStartFlagFilePath)) {
-    let pathToExecutable;
-    if (process.platform === 'darwin') {
-      pathToExecutable = path.join(__dirname, '..', '..', 'MacOS', 'bundle-bee');
-    } else if (process.platform === 'win32') {
-      pathToExecutable = path.join(__dirname, '..', '..', 'MacOS', 'bundle-bee');
-    }
-    fs.writeFile(
-      initialStartFlagFilePath,
-      `command to run executable:
-    open ${pathToExecutable}
-    dirname: ${__dirname}
-    filename: ${__filename}
-    initalstartflagfilepath: ${initialStartFlagFilePath}
-    `
-    );
-    exec(`open ${pathToExecutable}`, err => {
-      app.exit(0);
-    });
-  } else {
-    fs.unlink(initialStartFlagFilePath, err => {
-      if (err) console.log(err);
-    });
-  }
-  mainWindow.on('close', () => {
-    app.exit(0);
-  });
+  // if (!fs.existsSync(initialStartFlagFilePath)) {
+  //   let pathToExecutable = path.join(__dirname, '..', '..', 'MacOS', 'bundle-bee');
+  //   fs.writeFile(
+  //     initialStartFlagFilePath,
+  //     `command to run executable:
+  //   open ${pathToExecutable}
+  //   dirname: ${__dirname}
+  //   filename: ${__filename}
+  //   initalstartflagfilepath: ${initialStartFlagFilePath}
+  //   `
+  //   );
+  //   exec(`open ${pathToExecutable}`, err => {
+  //     app.exit(0);
+  //   });
+  // } else {
+  //   fs.unlink(initialStartFlagFilePath, err => {
+  //     if (err) console.log(err);
+  //   });
+  // }
+  // mainWindow.on('close', () => {
+  //   app.exit(0);
+  // });
 });
 
 ipcMain.on('ondragstart', (event, filePath) => {
