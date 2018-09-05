@@ -37,10 +37,10 @@ getSavedProjectDataFromFile(pathToSavedData)
             console.log('cwd: ', process.cwd());
             console.log('parcel command: ');
             console.log(
-              `node ${parcelBundlerProcess} ${entry} ${rootDir} ${pathToWriteStatsFile} ${outputDir}`
+              `node "${parcelBundlerProcess}" "${entry}" "${rootDir}" "${pathToWriteStatsFile}" "${outputDir}"`
             );
             exec(
-              `node ${parcelBundlerProcess} ${entry} ${rootDir} ${pathToWriteStatsFile} ${outputDir}`,
+              `node "${parcelBundlerProcess}" "${entry}" "${rootDir}" "${pathToWriteStatsFile}" "${outputDir}"`,
               null,
               error => {
                 if (error) process.send({ error });
@@ -58,12 +58,13 @@ getSavedProjectDataFromFile(pathToSavedData)
     console.log('cwd: ', process.cwd());
     console.log('parcel command: ');
     console.log(
-      `node ${parcelBundlerProcess} ${entry} ${rootDir} ${pathToWriteStatsFile} ${outputDir}`
+      `node "${parcelBundlerProcess}" "${entry}" "${rootDir}" "${pathToWriteStatsFile}" "${outputDir}"`
     );
     exec(
-      `node ${parcelBundlerProcess} ${entry} ${rootDir} ${pathToWriteStatsFile} ${outputDir}`,
+      `node "${parcelBundlerProcess}" "${entry}" "${rootDir}" "${pathToWriteStatsFile}" "${outputDir}"`,
       null,
       error => {
+        console.log('object');
         if (error) process.send({ error });
         else {
           process.send('');

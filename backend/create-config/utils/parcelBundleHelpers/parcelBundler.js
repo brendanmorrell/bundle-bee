@@ -8,7 +8,6 @@ const pathToWriteStatsFile = process.argv[4];
 const outputDir = process.argv[5];
 // hack for production mode
 process.env.NODE_ENV = 'production';
-
 // hack to change node.js directory
 process.chdir(rootDir);
 // define the bundler
@@ -35,5 +34,16 @@ bundler.on('bundled', mainBundle => {
     asset.relativeName = asset.relativeName;
   });
 
-  fs.writeFileSync(pathToWriteStatsFile, JSON.stringify({totalBundleSize: mainBundle.totalSize, totalElapsedTime: mainBundle.bundleTime, files: output}, null, 2));
+  fs.writeFileSync(
+    pathToWriteStatsFile,
+    JSON.stringify(
+      {
+        totalBundleSize: mainBundle.totalSize,
+        totalElapsedTime: mainBundle.bundleTime,
+        files: output,
+      },
+      null,
+      2
+    )
+  );
 });
