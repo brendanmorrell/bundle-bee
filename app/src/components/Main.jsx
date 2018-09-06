@@ -4,14 +4,6 @@ import DropZone from './DropZone.jsx';
 import ModalPrompt from './ModalPrompt.jsx';
 import Chart from './Chart.jsx';
 
-if (localStorage.getItem('secondStart') === 'true') {
-  localStorage.setItem('secondStart', 'false');
-  ipcRenderer.send('browserStarted', 'secondStart');
-} else {
-  localStorage.setItem('secondStart', 'true');
-  ipcRenderer.send('browserStarted', 'firstStart');
-}
-
 import {
   retrieveWebpackStats,
   retrieveRollupStats,
