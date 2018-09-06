@@ -10,9 +10,10 @@ const reformatPath = file => {
     return file.replace(/\//g, '\\\\');
   }
   return file;
-}
+};
 
 module.exports = res => {
+  const nodeModulesRoot = path.join(__dirname, '..', '..', '..', '..', 'node_modules');
   let { entry, extensions, indexHtmlPath, rootDir } = res;
   const importantExtensions = ['.js', '.jsx', '.css', '.sass', '.scss', '.less'];
   const extensionsToResolve = extensions.reduce((acc, x) => {
@@ -33,7 +34,9 @@ module.exports = res => {
 const path = require('${require.resolve('path')}');
 
 const HtmlWebpackPlugin = require('${upath.normalize(require.resolve('html-webpack-plugin'))}');
-const MiniCssExtractPlugin = require('${upath.normalize(require.resolve('mini-css-extract-plugin'))}');
+const MiniCssExtractPlugin = require('${upath.normalize(
+    require.resolve('mini-css-extract-plugin')
+  )}');
 
 module.exports = {
     entry: '${upath.normalize(entry)}',
@@ -55,6 +58,10 @@ module.exports = {
   resolve: {
     extensions: ${extensionsToResolve.length ? '[' + extensionsToResolve + ']' : ''},
   },
+  resolveLoader: {
+    modules:["${nodeModulesRoot}"]
+  }
+
   };`;
   return res;
 };

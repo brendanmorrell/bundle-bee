@@ -14,6 +14,8 @@ module.exports = res =>
       'rollup-dist'
     );
     const usersRollupDistPath = path.join(res.rootDir, 'bundle-bee-rollup-dist');
+    console.log('TCL: usersRollupDistPath', usersRollupDistPath);
+    console.log('TCL: localRollupDistPath', localRollupDistPath);
     if (!fs.existsSync(localRollupDistPath)) fs.mkdirSync(localRollupDistPath);
     copydir(usersRollupDistPath, localRollupDistPath, err => {
       if (err) reject(err);

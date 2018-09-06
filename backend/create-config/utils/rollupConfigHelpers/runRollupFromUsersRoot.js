@@ -12,7 +12,7 @@ module.exports = res =>
     process.chdir(res.rootDir);
 
     const rollupBundlerPath = path.join(__dirname, 'rollupBundler.js');
-    exec(`node ${rollupBundlerPath} ${rollupConfigPath}`, (err, stdout, stderr) => {
+    exec(`node "${rollupBundlerPath}" "${rollupConfigPath}"`, (err, stdout, stderr) => {
       process.chdir(originalProcessDir);
       if (err) reject(err);
       fs.unlink(rollupConfigPath, err => {
