@@ -22,12 +22,12 @@ app.on('ready', () => {
 });
 
 ipcMain.on('browserStarted', (event, startCount) => {
-  if (startCount === 'firstStart') {
-    let pathToExecutable = path.join(__dirname, '..', '..', 'MacOS', 'bundle-bee');
-    exec(`open ${pathToExecutable}`, err => {
-      app.exit(0);
-    });
-  }
+  // if (startCount === 'firstStart') {
+  //   let pathToExecutable = path.join(__dirname, '..', '..', 'MacOS', 'bundle-bee');
+  //   exec(`open ${pathToExecutable}`, err => {
+  //     app.exit(0);
+  //   });
+  // }
 });
 
 ipcMain.on('ondragstart', (event, filePath) => {

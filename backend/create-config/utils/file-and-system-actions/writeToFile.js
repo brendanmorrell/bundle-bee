@@ -10,7 +10,11 @@ module.exports = (data, fileName, res) => {
       fs.mkdirSync(saveDir);
     }
     fs.writeFile(savePath, stringData, err => {
-      if (err) reject(`error writing file ${fileName}`);
+      console.log('cwd: ', process.cwd());
+      if (err) {
+        console.log(err);
+        reject(`error writing file ${fileName}`);
+      }
       resolve(res);
     });
   });
